@@ -22,4 +22,5 @@ setup(
                        'Topic :: Software Development' + \
                        ' :: Libraries :: Python Modules'
                        ],
+        long_description=open('README.rst')
         )
