@@ -33,7 +33,10 @@ class Client(core._Core):
         try:
             event = self.recv(timeout)
             if event:
-                exec('self.on_%s(%s)' % (event[0].lower(), event[1]))
+                if isinstance(event[1], basestring):
+                    exec('self.on_%s("%s")' % (event[0].lower(), event[1]))
+                else:
+                    exec('self.on_%s(%s)' % (event[0].lower(), event[1]))
         except self.LurklibError as exception:
             self.on_exception(exception)
 
